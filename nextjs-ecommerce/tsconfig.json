@@ -19,7 +19,9 @@
     ],
     "paths": {
       "@ui": ["./components/ui/index.ts"],
-      "@models": ["./components/models/index.ts"]
+      "@models": ["./components/models/index.ts"],
+      "@utils": ["./libs/utils/index.ts"],
+      "@hooks": ["./libs/hooks/index.ts"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

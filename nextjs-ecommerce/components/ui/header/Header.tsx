@@ -11,7 +11,7 @@ export function Header() {
           <ul>
             <li>
               <Link href="/cart" className="btn btn-ghost rounded-btn">
-                Cart
+                Cart <div className="badge badge-secondary">0</div>
               </Link>
             </li>
             <li>
