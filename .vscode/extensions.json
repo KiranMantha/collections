@@ -2,6 +2,7 @@
   "recommendations": [
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
-    "mongodb.mongodb-vscode"
+    "mongodb.mongodb-vscode",
+    "bradlc.vscode-tailwindcss"
   ]
 }
