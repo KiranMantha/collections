@@ -107,7 +107,7 @@ interface Cart {
 }
 
 const initialState: Cart = {
-  items: orderItems,
+  items: [],
   itemsPrice: 0,
   taxPrice: 0,
   shippingPrice: 0,

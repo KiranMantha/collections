@@ -1,6 +1,11 @@
+'use client';
+
+import { useCartStore } from '@hooks';
 import Link from 'next/link';
 
 export function Header() {
+  const { items } = useCartStore();
+
   return (
     <header>
       <nav>
@@ -11,7 +16,7 @@ export function Header() {
           <ul>
             <li>
               <Link href="/cart" className="btn btn-ghost rounded-btn">
-                Cart <div className="badge badge-secondary">0</div>
+                Cart <div className="badge badge-secondary">{items.length}</div>
               </Link>
             </li>
             <li>
