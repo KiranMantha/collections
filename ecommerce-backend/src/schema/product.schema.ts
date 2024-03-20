@@ -5,12 +5,6 @@ export class Product {
   @Prop({ required: true })
   name: string;
 
-  @Prop({ required: true, unique: true })
-  slug: string;
-
-  @Prop({ required: true })
-  category: string;
-
   @Prop({ required: true })
   image: string;
 
@@ -20,23 +14,26 @@ export class Product {
   @Prop({ required: true })
   brand: string;
 
+  @Prop()
+  about: string;
+
+  @Prop()
+  description: string;
+
+  @Prop({ required: true })
+  category: string;
+
+  @Prop({ required: true })
+  subcategory: string;
+
   @Prop({ required: true, default: 0 })
   rating: number;
 
   @Prop({ required: true, default: 0 })
   numReviews: number;
 
-  @Prop({ required: true, default: 0 })
-  countInStock: number;
-
   @Prop({ required: true })
-  description: string;
-
-  @Prop({ default: false })
-  isFeatured: boolean;
-
-  @Prop()
-  banner?: string;
+  availability: string;
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);
