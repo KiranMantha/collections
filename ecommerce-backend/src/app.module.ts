@@ -10,7 +10,7 @@ import { ProductsModule } from './products/products.module';
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
         uri: configService.get<string>('DB_URL'),
-        dbName: 'ecommerce-backend'
+        dbName: configService.get<string>('DB_NAME')
       }),
       inject: [ConfigService]
     }),
