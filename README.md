@@ -4,9 +4,9 @@ This repo contains small sub projects based on angular and react with different 
 
 ## Projects
 
-1. [express-sse](https://github.com/KiranMantha/collections/tree/main/express-sse)
-2. [nextjs-ecommerce](https://github.com/KiranMantha/collections/tree/main/nextjs-ecommerce)
-3. [ecommerce-backend](https://github.com/KiranMantha/collections/tree/main/ecommerce-backend)
+1. [express-sse => sample server sent event api implementation](https://github.com/KiranMantha/collections/tree/main/express-sse)
+2. [nextjs-ecommerce => ecommerce frontend based on NextJS](https://github.com/KiranMantha/collections/tree/main/nextjs-ecommerce)
+3. [ecommerce-backend => ecommerce backend based on NestJS](https://github.com/KiranMantha/collections/tree/main/ecommerce-backend)
 
 ## Gists
 
