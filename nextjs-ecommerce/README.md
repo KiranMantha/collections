@@ -4,7 +4,9 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First, run the backend server on `ecommerce-backend` folder through `yarn start`. If no products are seen, then insert products from `products.json` file inside that repo using mongodb `insertMany` command.
+
+Second, run the development server:
 
 ```bash
 npm run dev
