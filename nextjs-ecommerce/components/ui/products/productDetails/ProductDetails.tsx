@@ -46,7 +46,7 @@ export function ProductDetails({ id }: { id: string }) {
         </ul>
       </div>
       <div>
-        <div className="card bg-base-300 shadow-xl mt-3 md:mt-0">
+        <div className="card bg-base-300 shadow-xl my-3 md:mt-0">
           <div className="card-body">
             <div className="mb-2 flex justify-between gap-2">
               <div>Price:</div>
@@ -66,6 +66,8 @@ export function ProductDetails({ id }: { id: string }) {
       </div>
     </div>
   ) : (
-    <>Loading...</>
+    <div className="text-center">
+      <progress className="progress w-56"></progress>
+    </div>
   );
 }

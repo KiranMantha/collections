@@ -7,7 +7,7 @@ export function Header() {
   const { items } = useCartStore();
 
   return (
-    <header>
+    <header className="sticky top-0">
       <nav>
         <div className="navbar justify-between bg-base-300">
           <Link href="/" className="btn btn-ghost text-lg">

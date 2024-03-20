@@ -46,11 +46,19 @@ export function Cart() {
                         </Link>
                       </td>
                       <td>
-                        <button className="btn" type="button" onClick={() => decrease(item)}>
+                        <button
+                          className="btn btn-outline btn-primary btn-sm"
+                          type="button"
+                          onClick={() => decrease(item)}
+                        >
                           -
                         </button>
                         <span className="px-2">{item.qty}</span>
-                        <button className="btn" type="button" onClick={() => increase(item)}>
+                        <button
+                          className="btn btn-outline btn-primary btn-sm"
+                          type="button"
+                          onClick={() => increase(item)}
+                        >
                           +
                         </button>
                       </td>

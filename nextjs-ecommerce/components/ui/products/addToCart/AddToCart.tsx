@@ -18,11 +18,11 @@ export function AddToCart({ item }: { item: OrderItem }) {
 
   return existItem ? (
     <div>
-      <button className="btn" type="button" onClick={() => decrease(existItem)}>
+      <button className="btn btn-outline btn-primary btn-sm" type="button" onClick={() => decrease(existItem)}>
         -
       </button>
       <span className="px-2">{existItem.qty}</span>
-      <button className="btn" type="button" onClick={() => increase(existItem)}>
+      <button className="btn btn-outline btn-primary btn-sm" type="button" onClick={() => increase(existItem)}>
         +
       </button>
     </div>
