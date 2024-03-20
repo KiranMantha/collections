@@ -38,10 +38,10 @@ export function Cart() {
               <tbody>
                 {items.map(item => {
                   return (
-                    <tr key={item.slug}>
+                    <tr key={item._id}>
                       <td>
-                        <Link href={`/product/${item.slug}`} className="flex items-center">
-                          <Image src={item.image} alt={item.name} height={50} width={50} />
+                        <Link href={`/product/${item._id}`} className="flex items-center">
+                          <Image src={item.image} alt={item.name} height={50} width={50} className="mr-3" />
                           <span>{item.name}</span>
                         </Link>
                       </td>
@@ -54,7 +54,9 @@ export function Cart() {
                           +
                         </button>
                       </td>
-                      <td>${item.price}</td>
+                      <td>
+                        {item.currency} {item.price}
+                      </td>
                     </tr>
                   );
                 })}
@@ -67,7 +69,7 @@ export function Cart() {
                 <ul>
                   <li>
                     <div className="pb-3 text-xl">
-                      Subtotal ({items.reduce((acc, item) => acc + item.qty, 0)}): ${itemsPrice}
+                      Subtotal ({items.reduce((acc, item) => acc + item.qty, 0)}): {itemsPrice}
                     </div>
                   </li>
                 </ul>

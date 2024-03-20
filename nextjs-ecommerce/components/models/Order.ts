@@ -17,10 +17,12 @@ export interface Order {
 }
 
 export interface OrderItem {
+  _id: string;
   name: string;
-  qty: number;
   image: string;
   price: number;
+  currency: string;
+  qty: number;
 }
 
 export interface ShippingAddress {

@@ -1,17 +1,7 @@
-import { OrderItem, ShippingAddress } from '@models';
+import { Cart, OrderItem, ShippingAddress } from '@models';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { round2 } from '../../utils';
-
-interface Cart {
-  items: OrderItem[];
-  itemsPrice: number;
-  taxPrice: number;
-  shippingPrice: number;
-  totalPrice: number;
-  paymentMethod: string;
-  shippingAddress: ShippingAddress;
-}
 
 const initialState: Cart = {
   items: [],
@@ -55,9 +45,9 @@ export function useCartStore() {
     paymentMethod,
     shippingAddress,
     increase: (item: OrderItem) => {
-      const exist = items.find(x => x.slug === item.slug);
+      const exist = items.find(x => x._id === item._id);
       const updatedCartItems = exist
-        ? items.map(x => (x.slug === item.slug ? { ...exist, qty: exist.qty + 1 } : x))
+        ? items.map(x => (x._id === item._id ? { ...exist, qty: exist.qty + 1 } : x))
         : [...items, { ...item, qty: 1 }];
       const { itemsPrice, shippingPrice, taxPrice, totalPrice } = calcPrice(updatedCartItems);
       cartStore.setState({
@@ -69,12 +59,12 @@ export function useCartStore() {
       });
     },
     decrease: (item: OrderItem) => {
-      const exist = items.find(x => x.slug === item.slug);
+      const exist = items.find(x => x._id === item._id);
       if (!exist) return;
       const updatedCartItems =
         exist.qty === 1
-          ? items.filter((x: OrderItem) => x.slug !== item.slug)
-          : items.map(x => (item.slug ? { ...exist, qty: exist.qty - 1 } : x));
+          ? items.filter((x: OrderItem) => x._id !== item._id)
+          : items.map(x => (item._id ? { ...exist, qty: exist.qty - 1 } : x));
       const { itemsPrice, shippingPrice, taxPrice, totalPrice } = calcPrice(updatedCartItems);
       cartStore.setState({
         items: updatedCartItems,
@@ -100,7 +90,7 @@ export function useCartStore() {
       });
     },
     getItemById: (id: string) => {
-      // return items.find(item => item.id === id);
+      return items.find(item => item._id === id);
     },
     init: () => cartStore.setState(initialState)
   };

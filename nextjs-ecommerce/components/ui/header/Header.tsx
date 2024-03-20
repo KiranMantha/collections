@@ -16,7 +16,7 @@ export function Header() {
           <ul>
             <li>
               <Link href="/cart" className="btn btn-ghost rounded-btn">
-                Cart <div className="badge badge-secondary">{items.length}</div>
+                Cart <div className="badge badge-secondary">{items.reduce((acc, item) => acc + item.qty, 0)} </div>
               </Link>
             </li>
             <li>

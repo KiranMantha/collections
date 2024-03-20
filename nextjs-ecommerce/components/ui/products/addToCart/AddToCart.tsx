@@ -2,19 +2,19 @@
 
 import { useCartStore } from '@hooks/store';
 import { OrderItem } from '@models';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export function AddToCart({ item }: { item: OrderItem }) {
-  const { increase, decrease } = useCartStore();
+  const { items, getItemById, increase, decrease } = useCartStore();
   const [existItem, setExistItem] = useState<OrderItem>();
 
   const addToCartHandler = () => {
     increase(item);
   };
 
-  // useEffect(() => {
-  //   setExistItem(getItemBySlug(item));
-  // }, [item]);
+  useEffect(() => {
+    setExistItem(getItemById(item._id));
+  }, [item, items]);
 
   return existItem ? (
     <div>
