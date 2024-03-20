@@ -17,8 +17,9 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
+    "moduleResolution": "node",
     "paths": {
-      "@schema": ["src/schema/index.ts"]
+      "@schema/*": ["src/schema/*"]
     }
   }
 }

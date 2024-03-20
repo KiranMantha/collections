@@ -25,3 +25,7 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 ## Resource links
 
 - Nestjs ecommerce example: https://www.youtube.com/watch?v=zWEvbGdUhRg
+- mongodb dataset: https://www.kaggle.com/datasets/shrashtisinghal/mongo-db-datsets
+- t-shirts dataset: https://www.kaggle.com/datasets/sunnykusawa/tshirts
+- jeans dataset: https://www.kaggle.com/datasets/sunnykusawa/jeans-dataset
+- ecommerce image dataset: https://www.kaggle.com/datasets/sunnykusawa/ecommerce-products-image-dataset
