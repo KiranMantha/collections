@@ -1,22 +1,13 @@
-import { Product } from '@models';
+'use client';
+
+import { useGetProductById } from '@hooks/product';
 import Image from 'next/image';
 import { AddToCart } from '../addToCart';
 
-const product: Product = {
-  name: 'Product 1',
-  image: '/product-1.jpg',
-  price: 9.99,
-  brand: 'Brand 1',
-  about: 'about',
-  description: 'This is product 1',
-  category: 'Category 1',
-  subcategory: 'Sub Category 1',
-  rating: 4.5,
-  numReviews: 10,
-  availability: 'available within 3-4days'
-};
 export function ProductDetails({ id }: { id: string }) {
-  return (
+  const product = useGetProductById(id);
+
+  return product ? (
     <div className="grid md:grid-cols-4 md:gap-3">
       <div className="md:col-span-2">
         <Image
@@ -31,33 +22,39 @@ export function ProductDetails({ id }: { id: string }) {
       <div>
         <ul className="space-y-4">
           <li>
-            <p className="text-xl">
-              {id} {product.name}
-            </p>
+            <p className="text-xl">{product.name}</p>
           </li>
           <li>
-            {product.rating} of {product.numReviews}
+            Rating: {product.rating} of {product.numReviews}
           </li>
           <li>{product.brand}</li>
-          <li>
-            <div className="divider"></div>
-          </li>
-          <li>
-            About: <p>{product.about}</p>
-          </li>
-          <li>
-            Description: <p>{product.description}</p>
-          </li>
+          {product.about || product.description ? (
+            <li>
+              <div className="divider"></div>
+            </li>
+          ) : null}
+          {product.about ? (
+            <li>
+              About: <p className="mt-1">{product.about}</p>
+            </li>
+          ) : null}
+          {product.description ? (
+            <li>
+              Description: <p className="mt-1">{product.description}</p>
+            </li>
+          ) : null}
         </ul>
       </div>
       <div>
         <div className="card bg-base-300 shadow-xl mt-3 md:mt-0">
           <div className="card-body">
-            <div className="mb-2 flex justify-between">
-              <div>Price</div>
-              <div>${product.price}</div>
+            <div className="mb-2 flex justify-between gap-2">
+              <div>Price:</div>
+              <div>
+                {product.currency} {product.price}
+              </div>
             </div>
-            <div className="mb-2 flex justify-between">
+            <div className="mb-2 flex justify-between gap-2">
               <div>Availability:</div>
               <div>{product.availability}</div>
             </div>
@@ -68,5 +65,7 @@ export function ProductDetails({ id }: { id: string }) {
         </div>
       </div>
     </div>
+  ) : (
+    <>Loading...</>
   );
 }
