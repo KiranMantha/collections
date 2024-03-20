@@ -12,6 +12,9 @@ export class Product {
   price: number;
 
   @Prop({ required: true })
+  currency: string;
+
+  @Prop({ required: true })
   brand: string;
 
   @Prop()

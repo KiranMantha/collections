@@ -8,7 +8,6 @@ export class ProductsController {
 
   @Get()
   async findAll(): Promise<Product[]> {
-    console.log('get products');
     return this.productsService.findAll();
   }
 
