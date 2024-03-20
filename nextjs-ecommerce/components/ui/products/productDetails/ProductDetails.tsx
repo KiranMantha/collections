@@ -1,12 +1,8 @@
-'use client';
-
-import { useGetProductById } from '@hooks/product';
+import { Product } from '@models';
 import Image from 'next/image';
 import { AddToCart } from '../addToCart';
 
-export function ProductDetails({ id }: { id: string }) {
-  const product = useGetProductById(id);
-
+export function ProductDetails({ product }: { product: Product }) {
   return product ? (
     <div className="grid md:grid-cols-4 md:gap-3">
       <div className="md:col-span-2">
