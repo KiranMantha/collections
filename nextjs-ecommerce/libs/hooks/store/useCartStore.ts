@@ -45,10 +45,14 @@ export function useCartStore() {
     paymentMethod,
     shippingAddress,
     increase: (item: OrderItem) => {
-      const exist = items.find(x => x._id === item._id);
-      const updatedCartItems = exist
-        ? items.map(x => (x._id === item._id ? { ...exist, qty: exist.qty + 1 } : x))
-        : [...items, { ...item, qty: 1 }];
+      const existingIndex = items.findIndex(x => x._id === item._id);
+      let updatedCartItems = [];
+      if (existingIndex !== -1) {
+        ++items[existingIndex].qty;
+        updatedCartItems = [...items];
+      } else {
+        updatedCartItems = [...items, { ...item, qty: 1 }];
+      }
       const { itemsPrice, shippingPrice, taxPrice, totalPrice } = calcPrice(updatedCartItems);
       cartStore.setState({
         items: updatedCartItems,
@@ -59,12 +63,16 @@ export function useCartStore() {
       });
     },
     decrease: (item: OrderItem) => {
-      const exist = items.find(x => x._id === item._id);
-      if (!exist) return;
-      const updatedCartItems =
-        exist.qty === 1
-          ? items.filter((x: OrderItem) => x._id !== item._id)
-          : items.map(x => (item._id ? { ...exist, qty: exist.qty - 1 } : x));
+      const existingIndex = items.findIndex(x => x._id === item._id);
+      if (existingIndex === -1) return;
+      let updatedCartItems = [];
+
+      if (items[existingIndex].qty === 1) {
+        updatedCartItems = items.filter((x: OrderItem) => x._id !== item._id);
+      } else {
+        --items[existingIndex].qty;
+        updatedCartItems = [...items];
+      }
       const { itemsPrice, shippingPrice, taxPrice, totalPrice } = calcPrice(updatedCartItems);
       cartStore.setState({
         items: updatedCartItems,
