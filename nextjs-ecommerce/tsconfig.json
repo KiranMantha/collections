@@ -19,7 +19,7 @@
     ],
     "paths": {
       "@ui": ["./components/ui/index.ts"],
-      "@models": ["./components/models/index.ts"],
+      "@models": ["./models/index.ts"],
       "@utils": ["./libs/utils/index.ts"],
       "@hooks/*": ["./libs/hooks/*"],
       "@services/*": ["./libs/services/*"]
