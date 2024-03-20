@@ -18,12 +18,9 @@ export interface Order {
 
 export interface OrderItem {
   name: string;
-  slug: string;
   qty: number;
   image: string;
   price: number;
-  color: string;
-  size: string;
 }
 
 export interface ShippingAddress {

@@ -1,20 +1,20 @@
 'use client';
 
-import { useCartStore } from '@hooks';
+import { useCartStore } from '@hooks/store';
 import { OrderItem } from '@models';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export function AddToCart({ item }: { item: OrderItem }) {
-  const { getItemBySlug, increase, decrease } = useCartStore();
+  const { increase, decrease } = useCartStore();
   const [existItem, setExistItem] = useState<OrderItem>();
 
   const addToCartHandler = () => {
     increase(item);
   };
 
-  useEffect(() => {
-    setExistItem(getItemBySlug(item.slug));
-  }, [item]);
+  // useEffect(() => {
+  //   setExistItem(getItemBySlug(item));
+  // }, [item]);
 
   return existItem ? (
     <div>

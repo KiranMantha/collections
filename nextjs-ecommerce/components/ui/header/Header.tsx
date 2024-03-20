@@ -1,6 +1,6 @@
 'use client';
 
-import { useCartStore } from '@hooks';
+import { useCartStore } from '@hooks/store';
 import Link from 'next/link';
 
 export function Header() {

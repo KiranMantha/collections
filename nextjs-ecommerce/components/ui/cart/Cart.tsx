@@ -1,6 +1,6 @@
 'use client';
 
-import { useCartStore } from '@hooks';
+import { useCartStore } from '@hooks/store';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';

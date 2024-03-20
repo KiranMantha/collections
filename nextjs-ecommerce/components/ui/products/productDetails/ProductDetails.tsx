@@ -4,22 +4,23 @@ import { AddToCart } from '../addToCart';
 
 const product: Product = {
   name: 'Product 1',
-  slug: 'product-1',
   image: '/product-1.jpg',
   price: 9.99,
   brand: 'Brand 1',
+  about: 'about',
   description: 'This is product 1',
   category: 'Category 1',
+  subcategory: 'Sub Category 1',
   rating: 4.5,
   numReviews: 10,
-  countInStock: 20
+  availability: 'available within 3-4days'
 };
-export function ProductDetails({ productSlug }: { productSlug: string }) {
+export function ProductDetails({ id }: { id: string }) {
   return (
     <div className="grid md:grid-cols-4 md:gap-3">
       <div className="md:col-span-2">
         <Image
-          src={product.image}
+          src={product.image.split(',')[0]}
           alt={product.name}
           height={640}
           width={640}
@@ -31,7 +32,7 @@ export function ProductDetails({ productSlug }: { productSlug: string }) {
         <ul className="space-y-4">
           <li>
             <p className="text-xl">
-              {productSlug} {product.name}
+              {id} {product.name}
             </p>
           </li>
           <li>
@@ -40,6 +41,9 @@ export function ProductDetails({ productSlug }: { productSlug: string }) {
           <li>{product.brand}</li>
           <li>
             <div className="divider"></div>
+          </li>
+          <li>
+            About: <p>{product.about}</p>
           </li>
           <li>
             Description: <p>{product.description}</p>
@@ -54,14 +58,12 @@ export function ProductDetails({ productSlug }: { productSlug: string }) {
               <div>${product.price}</div>
             </div>
             <div className="mb-2 flex justify-between">
-              <div>Status</div>
-              <div>{product.countInStock > 0 ? 'In Stock' : 'Unavailable'}</div>
+              <div>Availability:</div>
+              <div>{product.availability}</div>
             </div>
-            {product.countInStock !== 0 ? (
-              <div className="card-actions justify-center">
-                <AddToCart item={{ ...product, qty: 0, color: '', size: '' }} />
-              </div>
-            ) : null}
+            <div className="card-actions justify-center">
+              <AddToCart item={{ ...product, qty: 0 }} />
+            </div>
           </div>
         </div>
       </div>

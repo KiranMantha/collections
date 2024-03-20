@@ -29,3 +29,4 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 - t-shirts dataset: https://www.kaggle.com/datasets/sunnykusawa/tshirts
 - jeans dataset: https://www.kaggle.com/datasets/sunnykusawa/jeans-dataset
 - ecommerce image dataset: https://www.kaggle.com/datasets/sunnykusawa/ecommerce-products-image-dataset
+- amazon products dataset: https://data.world/crawlfeeds/ecommerce-datasets
