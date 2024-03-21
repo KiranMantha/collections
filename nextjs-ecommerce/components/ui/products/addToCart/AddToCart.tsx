@@ -5,7 +5,10 @@ import { OrderItem } from '@models';
 import { useEffect, useState } from 'react';
 
 export function AddToCart({ item }: { item: OrderItem }) {
-  const { items, getItemById, increase, decrease } = useCartStore();
+  const {
+    state: { items },
+    actions: { getItemById, increase, decrease }
+  } = useCartStore();
   const [existItem, setExistItem] = useState<OrderItem>();
 
   const addToCartHandler = () => {

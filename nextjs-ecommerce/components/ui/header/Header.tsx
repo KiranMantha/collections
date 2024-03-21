@@ -4,7 +4,9 @@ import { useCartStore } from '@hooks/store';
 import Link from 'next/link';
 
 export function Header() {
-  const { items } = useCartStore();
+  const {
+    state: { items }
+  } = useCartStore();
 
   return (
     <header className="sticky top-0">

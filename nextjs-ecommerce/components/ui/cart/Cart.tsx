@@ -6,7 +6,10 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 export function Cart() {
-  const { items, itemsPrice, increase, decrease } = useCartStore();
+  const {
+    state: { items, itemsPrice },
+    actions: { increase, decrease }
+  } = useCartStore();
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {

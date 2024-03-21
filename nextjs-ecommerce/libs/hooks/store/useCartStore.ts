@@ -36,14 +36,17 @@ export const cartStore = create<Cart>()(
 export function useCartStore() {
   const { items, itemsPrice, taxPrice, shippingPrice, totalPrice, paymentMethod, shippingAddress } = cartStore();
 
-  return {
+  const state = {
     items,
     itemsPrice,
     taxPrice,
     shippingPrice,
     totalPrice,
     paymentMethod,
-    shippingAddress,
+    shippingAddress
+  };
+
+  const actions = {
     increase: (item: OrderItem) => {
       const existingIndex = items.findIndex(x => x._id === item._id);
       let updatedCartItems = [];
@@ -99,7 +102,8 @@ export function useCartStore() {
     },
     getItemById: (id: string) => {
       return items.find(item => item._id === id);
-    },
-    init: () => cartStore.setState(initialState)
+    }
   };
+
+  return { state, actions };
 }
