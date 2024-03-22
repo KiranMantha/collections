@@ -6,17 +6,17 @@ import { UserService } from './user.service';
 export class UserController {
   constructor(private userService: UserService) {}
 
-  @Get('/signin')
+  @Get('signin')
   signIn() {
     return {};
   }
 
-  @Post('/signin')
+  @Post('signin')
   getUserByEmail(@Body() user: { email: string }): Promise<User> {
     return this.userService.getUserByEmail(user.email);
   }
 
-  @Post('/register')
+  @Post('register')
   createUser(
     @Body() newUser: { username: string; email: string; password: string }
   ): Promise<{ name: string; email: string }> {
