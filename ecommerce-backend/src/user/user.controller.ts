@@ -12,15 +12,15 @@ export class UserController {
     return this.userService.getUser(id);
   }
 
-  @Get('signin')
-  signIn() {
-    return {};
-  }
-
-  @Post('signin')
-  validateUser(
-    @Body() user: { email: string; password: string }
-  ): Promise<{ token: string }> {
+  @Post('login')
+  validateUser(@Body() user: { email: string; password: string }): Promise<{
+    user: {
+      id: string;
+      name: string;
+      email: string;
+    };
+    token: string;
+  }> {
     return this.userService.validateUser(user);
   }
 

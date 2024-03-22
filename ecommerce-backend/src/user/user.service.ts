@@ -14,10 +14,10 @@ export class UserService {
     private configService: ConfigService
   ) {}
 
-  async validateUser(user: {
-    email: string;
-    password: string;
-  }): Promise<{ token: string }> {
+  async validateUser(user: { email: string; password: string }): Promise<{
+    user: { id: string; name: string; email: string };
+    token: string;
+  }> {
     const existingUser = await this.userModel.findOne({ email: user.email });
     if (existingUser && (await compare(user.password, existingUser.password))) {
       const payload = {
@@ -27,6 +27,11 @@ export class UserService {
       };
       const jwtSecret = this.configService.get<string>('JWT_SECRET_KEY');
       return {
+        user: {
+          id: existingUser.id,
+          name: existingUser.name,
+          email: existingUser.email
+        },
         token: await this.jwtService.signAsync(payload, { secret: jwtSecret })
       };
     }
