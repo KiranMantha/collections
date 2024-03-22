@@ -1,5 +1,4 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { User } from '@schema/user.schema';
 import { UserService } from './user.service';
 
 @Controller('user')
@@ -12,8 +11,10 @@ export class UserController {
   }
 
   @Post('signin')
-  getUserByEmail(@Body() user: { email: string }): Promise<User> {
-    return this.userService.getUserByEmail(user.email);
+  validateUser(
+    @Body() user: { email: string; password: string }
+  ): Promise<{ token: string }> {
+    return this.userService.validateUser(user);
   }
 
   @Post('register')
