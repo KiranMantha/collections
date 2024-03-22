@@ -1,3 +1,4 @@
+import { SessionProvider } from '@providers';
 import { Header } from '@ui';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
@@ -18,13 +19,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="min-h-screen flex flex-col">
-          <Header />
-          {children}
-          <footer className="footer footer-center p-4 bg-base-300 text-base-content">
-            <p>Copyright 2024 - All rights reserved by next-ecommerce</p>
-          </footer>
-        </div>
+        <SessionProvider>
+          <div className="min-h-screen flex flex-col">
+            <Header />
+            {children}
+            <footer className="footer footer-center p-4 bg-base-300 text-base-content">
+              <p>Copyright 2024 - All rights reserved by next-ecommerce</p>
+            </footer>
+          </div>
+        </SessionProvider>
       </body>
     </html>
   );

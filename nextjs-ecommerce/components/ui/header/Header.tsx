@@ -1,12 +1,15 @@
 'use client';
 
 import { useCartStore } from '@hooks/store';
+import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 
 export function Header() {
   const {
     state: { items }
   } = useCartStore();
+  const { data: session } = useSession();
+  console.log(session);
 
   return (
     <header className="sticky top-0">
@@ -22,9 +25,15 @@ export function Header() {
               </Link>
             </li>
             <li>
-              <Link href="/signin" className="btn btn-ghost rounded-btn">
-                Sign In
-              </Link>
+              {!session ? (
+                <Link href="/api/auth/signin" className="btn btn-ghost rounded-btn">
+                  Sign In
+                </Link>
+              ) : (
+                <Link href="/api/auth/signout" className="btn btn-ghost rounded-btn">
+                  Sign Out
+                </Link>
+              )}
             </li>
           </ul>
         </div>

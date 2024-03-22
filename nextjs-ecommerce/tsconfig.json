@@ -22,9 +22,11 @@
       "@models": ["./models/index.ts"],
       "@utils": ["./libs/utils/index.ts"],
       "@hooks/*": ["./libs/hooks/*"],
-      "@services/*": ["./libs/services/*"]
+      "@services/*": ["./libs/services/*"],
+      "@auth": ["./libs/auth/index.ts"],
+      "@providers": ["./libs/providers/index.ts"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-auth.d.ts", "next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }

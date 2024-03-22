@@ -1,15 +1,18 @@
 import { v4 as uuidv4 } from 'uuid';
 
+let sessionId = '';
 const ENDPOINTS = {
   PRODUCTS: '/products',
   USER: '/user'
 };
 
 const getSessionId = () => {
-  const sessionId = sessionStorage.getItem('session-id');
+  // const sessionId = sessionStorage.getItem('session-id');
   if (sessionId) return sessionId;
+
   const newSessionId = uuidv4();
-  sessionStorage.setItem('session-id', newSessionId);
+  // sessionStorage.setItem('session-id', newSessionId);
+  sessionId = newSessionId;
   return newSessionId;
 };
 
@@ -37,7 +40,7 @@ const makeRequest = async ({
   if (payload) {
     options.body = JSON.stringify(payload);
   }
-
+  console.log('************************', url, options);
   return await fetch(url, options).then(res => res.json());
 };
 
