@@ -47,4 +47,8 @@ export class UserService {
     const { name, email } = registeredUser;
     return { name, email };
   }
+
+  async getUser(id: string) {
+    return this.userModel.findById(id);
+  }
 }

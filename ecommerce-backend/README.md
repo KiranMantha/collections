@@ -33,3 +33,7 @@ $ yarn run test:e2e
 # test coverage
 $ yarn run test:cov
 ```
+
+## Resource links
+
+- [NextJS authentication using NestJS and JWT](https://www.youtube.com/watch?v=khNwrFJ-Xqs)
