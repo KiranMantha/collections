@@ -1,7 +1,8 @@
 import { v4 as uuidv4 } from 'uuid';
 
 const ENDPOINTS = {
-  PRODUCTS: '/products'
+  PRODUCTS: '/products',
+  USER: '/user'
 };
 
 const getSessionId = () => {
@@ -12,12 +13,32 @@ const getSessionId = () => {
   return newSessionId;
 };
 
-const makeRequest = async (endpoint: string) => {
+const makeRequest = async ({
+  endpoint,
+  method = 'GET',
+  payload,
+  headers = {}
+}: {
+  endpoint: string;
+  method?: 'GET' | 'POST';
+  payload?: Record<string, unknown>;
+  headers?: Record<string, string>;
+}) => {
   const url = `${process.env.NEXT_PUBLIC_REST_ENDPOINT}${endpoint}`;
-  const headers = new Headers();
   const correlationid = `${getSessionId()}_${Date.now()}`;
-  headers.append('x-correlation-id', correlationid);
-  return await fetch(url, { headers }).then(res => res.json());
+  const options: RequestInit = { method };
+  options.headers = new Headers({
+    'x-correlation-id': correlationid,
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+    ...headers
+  });
+
+  if (payload) {
+    options.body = JSON.stringify(payload);
+  }
+
+  return await fetch(url, options).then(res => res.json());
 };
 
 export { ENDPOINTS, makeRequest };
