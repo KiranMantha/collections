@@ -12,12 +12,8 @@ async function bootstrap() {
       transform: true // automatically transform request parameters as per defined types
     })
   );
+  app.enableCors();
   await app.listen(process.env.PORT);
-  app.enableCors({
-    origin: true,
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-    credentials: true
-  });
   console.log(`Backend is running on: ${await app.getUrl()}`);
 }
 bootstrap();
