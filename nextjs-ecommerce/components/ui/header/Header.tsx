@@ -9,7 +9,7 @@ export function Header() {
     state: { items }
   } = useCartStore();
   const { data: session } = useSession();
-  console.log(session);
+  console.log({ session });
 
   return (
     <header className="sticky top-0">

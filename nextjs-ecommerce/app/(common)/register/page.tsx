@@ -1,3 +1,5 @@
+import { Register } from '@ui';
+
 export default function RegistrationPage() {
-  return <div>registration page</div>;
+  return <Register />;
 }

@@ -1,46 +1,48 @@
-import { signIn, useSession } from 'next-auth/react';
+'use client';
+
+import { userService } from '@services/user';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 
-export function SignIn() {
-  const { data: session } = useSession();
-  //   const router = useRouter();
-  const params = useSearchParams();
-
-  const callbackUrl = params.get('callbackUrl') || '/';
+export function Register() {
   const {
     register,
+    getValues,
     handleSubmit,
     formState: { errors, isSubmitting }
   } = useForm({
     defaultValues: {
+      name: '',
       email: '',
-      password: ''
+      password: '',
+      confirmPassword: ''
     }
   });
 
-  const renderInvalidLogin = params.get('error') ? (
-    <div className="alert text-error">
-      {params.get('error') === 'CredentialsSignin' ? 'Invalid email or password' : params.get('error')}
-    </div>
-  ) : null;
-
-  const renderSuccessfulLoginMessage = params.get('success') ? (
-    <div className="alert text-success">{params.get('success')}</div>
-  ) : null;
-
-  const onSubmit = (form: { email: string; password: string }) => {
-    signIn('credentials', { ...form });
+  const onSubmit = async (form: { name: string; email: string; password: string; confirmPassword: string }) => {
+    const { name, email, password } = form;
+    await userService.register({ name, email, password });
   };
 
   return (
     <div className="max-w-sm mx-auto card bg-base-300 my-4">
       <div className="card-body">
         <h1 className="card-title">Sign-In</h1>
-        {renderInvalidLogin}
-        {renderSuccessfulLoginMessage}
         <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="my-2">
+            <label className="label" htmlFor="name">
+              Name
+            </label>
+            <input
+              id="name"
+              className="input input-bordered w-full max-w-sm"
+              type="text"
+              {...register('name', {
+                required: 'Name is required'
+              })}
+            />
+            {errors.name?.message ? <div className="text-error">{errors.name?.message}</div> : null}
+          </div>
           <div className="my-2">
             <label className="label" htmlFor="email">
               Email
@@ -73,14 +75,34 @@ export function SignIn() {
             />
             {errors.password?.message ? <div className="text-error">{errors.password?.message}</div> : null}
           </div>
+          <div className="my-2">
+            <label className="label" htmlFor="confirm-password">
+              Confirm Password
+            </label>
+            <input
+              id="confirm-password"
+              className="input input-bordered w-full max-w-sm"
+              type="password"
+              {...register('confirmPassword', {
+                required: 'Re-enter password',
+                validate: value => {
+                  const { password } = getValues();
+                  return password === value || 'Passwords should match!';
+                }
+              })}
+            />
+            {errors.confirmPassword?.message ? (
+              <div className="text-error">{errors.confirmPassword?.message}</div>
+            ) : null}
+          </div>
           <div className="my-4">
             <button className="btn btn-primary w-full" type="submit" disabled={isSubmitting}>
               Submit {isSubmitting ? <span className="loading loading-spinner"></span> : null}
             </button>
           </div>
         </form>
-        <Link className="text-info text-sm" href="/register">
-          No account? Register now.
+        <Link className="text-info text-sm" href="/signin">
+          Have account? Sign In.
         </Link>
       </div>
     </div>
