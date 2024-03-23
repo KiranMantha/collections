@@ -19,7 +19,8 @@
     "noFallthroughCasesInSwitch": false,
     "moduleResolution": "node",
     "paths": {
-      "@schema/*": ["src/schema/*"]
+      "@schema/*": ["src/schema/*"],
+      "@guards/*": ["src/guards/*"]
     }
   }
 }

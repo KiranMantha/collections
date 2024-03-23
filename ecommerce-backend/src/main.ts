@@ -13,7 +13,11 @@ async function bootstrap() {
     })
   );
   await app.listen(process.env.PORT);
-  app.enableCors();
+  app.enableCors({
+    origin: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    credentials: true
+  });
   console.log(`Backend is running on: ${await app.getUrl()}`);
 }
 bootstrap();
