@@ -6,16 +6,21 @@ import NextAuth from 'next-auth/next';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
 let refreshTokenValue = '';
+let accessToken = '';
+
 async function refreshToken(existingToken: JWT): Promise<JWT> {
   const response = await userService.refreshToken(refreshTokenValue);
   console.log('*********** refreshToken response', response);
   refreshTokenValue = response.refreshToken;
+  accessToken = response.token;
   const user = jwtDecode(response.token);
   return {
     ...existingToken,
     user
   };
 }
+
+const getAuthToken = () => accessToken;
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -29,6 +34,7 @@ export const authOptions: NextAuthOptions = {
         if (!credentials) return null;
         const user = await userService.login(credentials);
         refreshTokenValue = user.refreshToken;
+        accessToken = user.token;
         const decodedUser = jwtDecode(user.token);
         console.log('**** signinapi', { user, decodedUser });
         return decodedUser;
@@ -78,4 +84,4 @@ export const authOptions: NextAuthOptions = {
 
 const handler = NextAuth(authOptions);
 
-export { handler as GET, handler as POST };
+export { handler as GET, handler as POST, getAuthToken };
