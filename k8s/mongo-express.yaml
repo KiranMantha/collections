@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-express-deployment
+  namespace: k8s-workspace
+spec:
+  selector:
+    matchLabels:
+      app: mongo-express-deployment
+  template:
+    metadata:
+      labels:
+        app: mongo-express-deployment
+    spec:
+      containers:
+      - name: mongo-express-deployment
+        image: mongo-express
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        env: 
+          - name: ME_CONFIG_MONGODB_ADMINUSERNAME
+            valueFrom:  
+              secretKeyRef:
+                name: mongo-secret
+                key: mongo-username
+          - name: ME_CONFIG_MONGODB_ADMINPASSWORD
+            valueFrom: 
+              secretKeyRef:
+                name: mongo-secret
+                key: mongo-password
+          - name: ME_CONFIG_MONGODB_SERVER
+            valueFrom:
+              configMapKeyRef:
+                name: mongo-express-configmap
+                key: db_url
+        ports:
+        - containerPort: 8081
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo-express-service
+  namespace: k8s-workspace
+spec:
+  selector:
+    app: mongo-express-deployment
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 8081
+    targetPort: 8081
+    nodePort: 31000
+

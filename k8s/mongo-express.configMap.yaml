@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongo-express-configmap
+  namespace: k8s-workspace
+data:
+  db_url: mongodb-service
