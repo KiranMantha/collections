@@ -1,0 +1,206 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Todo App API",
+    "description": "API documentation for the Todo App",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/trpc"
+    }
+  ],
+  "paths": {
+    "/todos": {
+      "get": {
+        "operationId": "list",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number"
+                      },
+                      "text": {
+                        "type": "string"
+                      },
+                      "completed": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "text",
+                      "completed"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "operationId": "add",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "text": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "text"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "text": {
+                      "type": "string"
+                    },
+                    "completed": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "text",
+                    "completed"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/todos/{id}": {
+      "put": {
+        "operationId": "complete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "text": {
+                      "type": "string"
+                    },
+                    "completed": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "text",
+                    "completed"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "Authorization": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    },
+    "responses": {
+      "error": {
+        "description": "Error response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                },
+                "issues": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "message"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "message",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      }
+    }
+  }
+}
