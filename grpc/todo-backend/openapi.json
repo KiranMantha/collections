@@ -11,9 +11,12 @@
     }
   ],
   "paths": {
-    "/todos": {
+    "/todo/getAll": {
       "get": {
-        "operationId": "list",
+        "operationId": "todo-list",
+        "tags": [
+          "Todo"
+        ],
         "parameters": [],
         "responses": {
           "200": {
@@ -50,9 +53,14 @@
             "$ref": "#/components/responses/error"
           }
         }
-      },
+      }
+    },
+    "/todo/add": {
       "post": {
-        "operationId": "add",
+        "operationId": "todo-add",
+        "tags": [
+          "Todo"
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -107,9 +115,12 @@
         }
       }
     },
-    "/todos/{id}": {
+    "/todo/{id}": {
       "put": {
-        "operationId": "complete",
+        "operationId": "todo-complete",
+        "tags": [
+          "Todo"
+        ],
         "parameters": [
           {
             "name": "id",
