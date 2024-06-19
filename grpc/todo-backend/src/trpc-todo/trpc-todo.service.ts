@@ -7,5 +7,4 @@ export class TrpcTodoService {
   private trpc = initTRPC.context().meta<OpenApiMeta>().create();
   procedure = this.trpc.procedure;
   router = this.trpc.router;
-  mergeRouters = this.trpc.mergeRouters;
 }

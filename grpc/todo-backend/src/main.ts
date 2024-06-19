@@ -1,4 +1,5 @@
 // src/main.ts
+import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import * as fs from 'fs';
 import { generateOpenApiDocument } from 'trpc-openapi';
@@ -8,7 +9,10 @@ async function bootstrap() {
   const app = await NestFactory.create(TrpcTodoModule);
   app.enableCors();
   const trpc = app.get(TrpcTodoRouter);
+  const configService = app.get(ConfigService);
   trpc.applyMiddleware(app);
+
+  const PORT = configService.get('PORT');
 
   // Generate OpenAPI document
   // trpc-openapi-issue: https://github.com/jlalmes/trpc-openapi/issues/431
@@ -22,7 +26,7 @@ async function bootstrap() {
   // Save OpenAPI document to a file
   fs.writeFileSync('./openapi.json', JSON.stringify(openApiDocument, null, 2));
 
-  await app.listen(3000);
-  console.log('backend started on: http://localhost:3000');
+  await app.listen(PORT);
+  console.log(`backend started on: http://localhost:${PORT}`);
 }
 bootstrap();

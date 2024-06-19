@@ -71,3 +71,13 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+## Usage
+
+endpoint: `http://localhost:3100/trpc`
+
+| path             | Http Verb | Payload          |
+| ---------------- | --------- | ---------------- |
+| `/todo.list`     | `GET`     |                  |
+| `/todo.add`      | `POST`    | `{text: string}` |
+| `/todo.complete` | `POST`    | `{id: number}`   |
