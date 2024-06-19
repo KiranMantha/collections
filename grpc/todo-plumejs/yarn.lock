@@ -631,6 +631,11 @@
   resolved "https://registry.yarnpkg.com/@trpc/client/-/client-11.0.0-rc.413.tgz#740cea1898ccc4f459bc31ab5f4d97a40f977bc0"
   integrity sha512-+5WRP5gK2OLHWSCkNDkrEeO0EmLScytUPU0jhp3gdKrpyx1AkVqCXUDioofkNXCmQd/WNUrWF35tkVfY3kYwlQ==
 
+"@trpc/server@^11.0.0-rc.413":
+  version "11.0.0-rc.413"
+  resolved "https://registry.yarnpkg.com/@trpc/server/-/server-11.0.0-rc.413.tgz#1ade54c85294401f075641df416dbf57eaf4cf7a"
+  integrity sha512-fQl7/69pSfk+7+Emm5eOCoAW6f2anxKV/3mUObQfFe0NLH0d4XwGyJuYV+sK7NBy1oit0Qwg12B0EXdsIryDuw==
+
 "@types/aria-query@^5.0.1":
   version "5.0.4"
   resolved "https://registry.yarnpkg.com/@types/aria-query/-/aria-query-5.0.4.tgz#1a31c3d378850d2778dabb6374d036dcba4ba708"

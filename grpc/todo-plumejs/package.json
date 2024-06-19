@@ -19,7 +19,8 @@
   "dependencies": {
     "@plumejs/core": "^4.1.9",
     "@plumejs/testing": "^4.1.1",
-    "@trpc/client": "^11.0.0-rc.413"
+    "@trpc/client": "^11.0.0-rc.413",
+    "@trpc/server": "^11.0.0-rc.413"
   },
   "devDependencies": {
     "@hey-api/openapi-ts": "^0.47.0",
