@@ -19,7 +19,7 @@ export class TodoService {
   public static todoList(): CancelablePromise<TodoListResponse> {
     return __request(OpenAPI, {
       method: "GET",
-      url: "/todo/getAll",
+      url: "/todo.list",
     });
   }
 
@@ -32,7 +32,7 @@ export class TodoService {
   public static todoAdd(data: TodoAddData): CancelablePromise<TodoAddResponse> {
     return __request(OpenAPI, {
       method: "POST",
-      url: "/todo/add",
+      url: "/todo.add",
       body: data.requestBody,
       mediaType: "application/json",
     });
@@ -40,7 +40,7 @@ export class TodoService {
 
   /**
    * @param data The data for the request.
-   * @param data.id
+   * @param data.requestBody
    * @returns unknown Successful response
    * @throws ApiError
    */
@@ -48,11 +48,10 @@ export class TodoService {
     data: TodoCompleteData,
   ): CancelablePromise<TodoCompleteResponse> {
     return __request(OpenAPI, {
-      method: "PUT",
-      url: "/todo/{id}",
-      path: {
-        id: data.id,
-      },
+      method: "POST",
+      url: "/todo.complete",
+      body: data.requestBody,
+      mediaType: "application/json",
     });
   }
 }

@@ -1,20 +1,18 @@
-// src/components/TodoList.tsx
-import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { trpcClient } from "../utils/trpc";
+import { trpc } from "../utils/trpc";
 
 const TodoList = () => {
   const [text, setText] = useState("");
-  const queryClient = useQueryClient();
-  const todosQuery = trpcClient.todo.list.useQuery();
-  const addTodoMutation = trpcClient.todo.add.useMutation({
+
+  const { data: todos, refetch: refetchTodos } = trpc.todo.list.useQuery();
+  const addTodoMutation = trpc.todo.add.useMutation({
     onSuccess: () => {
-      queryClient.invalidateQueries(trpcClient.todo.list.getQueryKey());
+      refetchTodos();
     },
   });
-  const completeTodoMutation = trpcClient.todo.complete.useMutation({
+  const completeTodoMutation = trpc.todo.complete.useMutation({
     onSuccess: () => {
-      queryClient.invalidateQueries(trpcClient.todo.list.getQueryKey());
+      refetchTodos();
     },
   });
 
@@ -29,7 +27,7 @@ const TodoList = () => {
       <input value={text} onChange={(e) => setText(e.target.value)} />
       <button onClick={handleAddTodo}>Add Todo</button>
       <ul>
-        {todosQuery.data?.map((todo: any) => (
+        {(todos || []).map((todo: any) => (
           <li key={todo.id}>
             {todo.text}
             {!todo.completed && (

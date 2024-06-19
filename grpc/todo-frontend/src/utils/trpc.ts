@@ -2,14 +2,16 @@
 import { httpBatchLink } from "@trpc/client";
 import { createTRPCReact } from "@trpc/react-query";
 
-export const trpc = createTRPCReact();
+const trpc: any = createTRPCReact();
 
 const trpcClient = trpc.createClient({
   links: [
     httpBatchLink({
-      url: "http://localhost:3000/trpc",
+      url: "http://localhost:3100/trpc",
     }),
   ],
 });
 
-export { trpcClient };
+const TrpcProvider = trpc.Provider;
+
+export { TrpcProvider, trpc, trpcClient };

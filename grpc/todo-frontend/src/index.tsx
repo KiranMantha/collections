@@ -5,7 +5,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import { trpcClient } from "./utils/trpc";
+import { TrpcProvider, trpcClient } from "./utils/trpc";
 
 const queryClient = new QueryClient();
 
@@ -15,11 +15,11 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <trpcClient.Provider client={trpcClient} queryClient={queryClient}>
+    <TrpcProvider client={trpcClient} queryClient={queryClient}>
       <QueryClientProvider client={queryClient}>
         <App />
       </QueryClientProvider>
-    </trpcClient.Provider>
+    </TrpcProvider>
   </React.StrictMode>
 );
 

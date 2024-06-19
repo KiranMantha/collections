@@ -19,7 +19,9 @@ export type TodoAddResponse = {
 };
 
 export type TodoCompleteData = {
-  id: number;
+  requestBody: {
+    id: number;
+  };
 };
 
 export type TodoCompleteResponse = {
@@ -29,7 +31,7 @@ export type TodoCompleteResponse = {
 };
 
 export type $OpenApiTs = {
-  "/todo/getAll": {
+  "/todo.list": {
     get: {
       res: {
         /**
@@ -43,7 +45,7 @@ export type $OpenApiTs = {
       };
     };
   };
-  "/todo/add": {
+  "/todo.add": {
     post: {
       req: TodoAddData;
       res: {
@@ -58,8 +60,8 @@ export type $OpenApiTs = {
       };
     };
   };
-  "/todo/{id}": {
-    put: {
+  "/todo.complete": {
+    post: {
       req: TodoCompleteData;
       res: {
         /**
