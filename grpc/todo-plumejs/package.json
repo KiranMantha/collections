@@ -1,35 +1,38 @@
 {
-	"name": "todo-plumejs",
-	"version": "1.0.0",
-	"description": "a plumejs and trpc based todo application",
-	"main": "index.js",
-	"scripts": {
-		"start": "vite",
-		"build": "yarn tsc && vite build",
-		"tsc": "tsc -p tsconfig.json --noEmit",
-		"test": "vitest",
-		"test:coverage": "yarn test --coverage",
-		"lint": "eslint . --ext .ts --fix",
-		"show-dep-graph": "skott --displayMode=webapp"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"dependencies": {
-		"@plumejs/core": "^4.1.9",
-		"@plumejs/testing": "^4.1.1"
-	},
-	"devDependencies": {
-		"@typescript-eslint/eslint-plugin": "^6.21.0",
-		"eslint": "^8.56.0",
-		"eslint-config-prettier": "^9.1.0",
-		"eslint-plugin-prettier": "^5.1.3",
-		"prettier": "^3.2.5",
-		"rollup-plugin-visualizer": "^5.12.0",
-		"sass": "^1.70.0",
-		"skott": "^0.33.2",
-		"typescript": "^5.3.3",
-		"vite": "^5.1.1",
-		"vitest": "^1.2.2"
-	}
+  "name": "todo-plumejs",
+  "version": "1.0.0",
+  "description": "a plumejs and trpc based todo application",
+  "main": "index.js",
+  "scripts": {
+    "start": "vite",
+    "build": "yarn tsc && vite build",
+    "tsc": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest",
+    "test:coverage": "yarn test --coverage",
+    "lint": "eslint . --ext .ts --fix",
+    "show-dep-graph": "skott --displayMode=webapp",
+    "generate:codegen": "openapi-ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@plumejs/core": "^4.1.9",
+    "@plumejs/testing": "^4.1.1",
+    "@trpc/client": "^11.0.0-rc.413"
+  },
+  "devDependencies": {
+    "@hey-api/openapi-ts": "^0.47.0",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "prettier": "^3.2.5",
+    "rollup-plugin-visualizer": "^5.12.0",
+    "sass": "^1.70.0",
+    "skott": "^0.33.2",
+    "typescript": "^5.3.3",
+    "vite": "^5.1.1",
+    "vitest": "^1.2.2"
+  }
 }
