@@ -12,7 +12,7 @@ export function Header() {
   console.log({ session });
 
   return (
-    <header className="sticky top-0">
+    <header className="sticky top-0 z-1">
       <nav>
         <div className="navbar justify-between bg-base-300">
           <Link href="/" className="btn btn-ghost text-lg">
