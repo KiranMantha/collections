@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import data from "../data/data.json";
-import About from "./About";
+import About from "../views/About";
+import Contact from "../views/Contact";
+import Home from "../views/Home";
+import Profile from "../views/Profile";
 import "./App.css";
-import Contact from "./Contact";
-import Feed from "./Feed";
 import Jumbotron from "./Jumbotron";
 import Navigation from "./Navigation";
 
@@ -13,15 +13,10 @@ import Navigation from "./Navigation";
 // };
 
 function App() {
-  const [state, setState] = useState({
+  const state = {
     name: "Manny Henri",
     jumbotronTitle: "List of courses",
-    feeds: [],
-  });
-
-  useEffect(() => {
-    setState((prevState) => ({ ...prevState, feeds: data }));
-  }, []);
+  };
 
   return (
     <Router>
@@ -29,14 +24,10 @@ function App() {
         <Navigation />
         <Jumbotron title={state.jumbotronTitle} />
         <Routes>
+          <Route key="/" exact path="/" element={<Home />} />
+          <Route key="/profile" path="/profile" element={<Profile />} />
           <Route key="/contact" path="/contact" element={<Contact />} />
           <Route key="/about" path="/about" element={<About />} />
-          <Route
-            key="/"
-            exact
-            path="/"
-            element={<Feed feeds={state.feeds} />}
-          />
         </Routes>
         <div className="footer">
           <p>&copy; {state.name} Inc.</p>
