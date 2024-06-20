@@ -3,7 +3,9 @@
   "collection": "@nestjs/schematics",
   "sourceRoot": "apps/api-gateway/src",
   "compilerOptions": {
-    "assets": ["**/*.proto"],
+    "assets": [
+      "**/*.proto"
+    ],
     "watchAssets": true,
     "deleteOutDir": true,
     "webpack": true,
@@ -28,6 +30,15 @@
       "sourceRoot": "apps/api-gateway/src",
       "compilerOptions": {
         "tsConfigPath": "apps/api-gateway/tsconfig.app.json"
+      }
+    },
+    "generated-models": {
+      "type": "library",
+      "root": "libs/generated-models",
+      "entryFile": "index",
+      "sourceRoot": "libs/generated-models/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/generated-models/tsconfig.lib.json"
       }
     }
   }

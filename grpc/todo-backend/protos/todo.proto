@@ -3,7 +3,10 @@ syntax = "proto3";
 package todo;
 
 service TodoService {
-  rpc GetAllTodos (Empty) returns (GetAllTodosResponse) {}
+  rpc FindAllTodo (Empty) returns (FindAllTodoResponse) {}
+  rpc FindOneTodo (FindOneTodoRequest) returns (FindOneTodoResponse) {}
+  rpc UpdateTodo (UpdateTodoRequest) returns (UpdateTodoResponse) {}
+  rpc RemoveTodo (RemoveTodoRequest) returns (RemoveTodoResponse) {}
 }
 
 // Empty contract
@@ -15,6 +18,30 @@ message Todo {
   bool completed = 3;
 }
 
-message GetAllTodosResponse {
+message FindAllTodoResponse {
   repeated Todo todos = 1;
+}
+
+message FindOneTodoRequest {
+  int32 id = 1;
+}
+
+message FindOneTodoResponse {
+  Todo todo = 1;
+}
+
+message UpdateTodoRequest {
+  Todo todo = 1;
+}
+
+message UpdateTodoResponse {
+  bool success = 1;
+}
+
+message RemoveTodoRequest {
+  int32 id = 1;
+}
+
+message RemoveTodoResponse {
+  bool success = 1;
 }

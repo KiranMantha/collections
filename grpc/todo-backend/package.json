@@ -20,7 +20,7 @@
     "test:e2e": "jest --config ./apps/api-gateway/test/jest-e2e.json",
     "createDto1": "grpc_tools_node_protoc --plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts --plugin=protoc-gen-nestjs=./node_modules/.bin/protoc-gen-nestjs --nest_out=./src/generated --ts_out=./src/generated ./protos/**/*.proto",
     "createDto2": "tsproto --path ./protos --output ./src/generated",
-    "createDto": "protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=./src/generated --ts_proto_opt=nestJs=true,esModuleInterop=true,returnObservable=true,addGrpcMetadata=true,addNestjsRestParameter=true ./protos/*.proto"
+    "createDto": "protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=./libs/generated-models/src --ts_proto_opt=nestJs=true,esModuleInterop=true,returnObservable=true,addGrpcMetadata=true,addNestjsRestParameter=true ./protos/*.proto"
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.10.9",
@@ -77,7 +77,11 @@
     "coverageDirectory": "./coverage",
     "testEnvironment": "node",
     "roots": [
-      "<rootDir>/apps/"
-    ]
+      "<rootDir>/apps/",
+      "<rootDir>/libs/"
+    ],
+    "moduleNameMapper": {
+      "^@app/generated-models(|/.*)$": "<rootDir>/libs/generated-models/src/$1"
+    }
   }
 }

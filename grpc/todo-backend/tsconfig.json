@@ -17,6 +17,9 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
-    "paths": {}
+    "paths": {
+      "@app/generated-models": ["libs/generated-models/src"],
+      "@app/generated-models/*": ["libs/generated-models/src/protos/*"]
+    }
   }
 }
