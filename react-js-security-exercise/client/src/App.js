@@ -1,12 +1,12 @@
 import React from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import About from "../views/About";
-import Contact from "../views/Contact";
-import Home from "../views/Home";
-import Profile from "../views/Profile";
-import "./App.css";
-import Jumbotron from "./Jumbotron";
-import Navigation from "./Navigation";
+import Jumbotron from "./components/Jumbotron";
+import Navigation from "./components/Navigation";
+import "./styles/App.css";
+import About from "./views/About";
+import Contact from "./views/Contact";
+import Home from "./views/Home";
+import Profile from "./views/Profile";
 
 // const createMarkup = () => {
 //   return { __html: 'i"m so dangerous' };
