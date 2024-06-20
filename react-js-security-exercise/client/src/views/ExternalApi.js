@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Button, Alert } from "reactstrap";
-import Highlight from "../components/Highlight";
+// import { Button, Alert } from "reactstrap";
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
-import { getConfig } from "../config";
+import { Alert } from "../components/Alert";
+import Highlight from "../components/Highlight";
 import Loading from "../components/Loading";
+import { getConfig } from "../config";
 
 export const ExternalApiComponent = () => {
   const { apiOrigin = "http://localhost:3001", audience } = getConfig();
@@ -14,11 +15,8 @@ export const ExternalApiComponent = () => {
     error: null,
   });
 
-  const {
-    getAccessTokenSilently,
-    loginWithPopup,
-    getAccessTokenWithPopup,
-  } = useAuth0();
+  const { getAccessTokenSilently, loginWithPopup, getAccessTokenWithPopup } =
+    useAuth0();
 
   const handleConsent = async () => {
     try {
@@ -171,14 +169,14 @@ export const ExternalApiComponent = () => {
           </Alert>
         )}
 
-        <Button
+        <button
           color="primary"
           className="mt-5"
           onClick={callApi}
           disabled={!audience}
         >
           Ping API
-        </Button>
+        </button>
       </div>
 
       <div className="result-block-container">

@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { Alert } from "./components/Alert";
 import Jumbotron from "./components/Jumbotron";
 import Navigation from "./components/Navigation";
 import "./styles/App.css";
@@ -23,6 +24,7 @@ function App() {
       <div className="container">
         <Navigation />
         <Jumbotron title={state.jumbotronTitle} />
+        <Alert>Hello All</Alert>
         <Routes>
           <Route key="/" exact path="/" element={<Home />} />
           <Route key="/profile" path="/profile" element={<Profile />} />
