@@ -8,6 +8,10 @@ import Feed from "./Feed";
 import Jumbotron from "./Jumbotron";
 import Navigation from "./Navigation";
 
+// const createMarkup = () => {
+//   return { __html: 'i"m so dangerous' };
+// };
+
 function App() {
   const [state, setState] = useState({
     name: "Manny Henri",
@@ -36,6 +40,7 @@ function App() {
         </Routes>
         <div className="footer">
           <p>&copy; {state.name} Inc.</p>
+          {/* <div dangerouslySetInnerHTML={createMarkup()}></div> */}
         </div>
       </div>
     </Router>
