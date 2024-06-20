@@ -16,6 +16,6 @@ async function bootstrap() {
     },
   );
   await app.listen();
-  console.log('todo app is listening on GRPC');
+  console.log('\ntodo app is listening on GRPC\n');
 }
 bootstrap();
