@@ -20,7 +20,7 @@
       "entryFile": "src/main",
       "compilerOptions": {
         "tsConfigPath": "apps/todo/tsconfig.app.json",
-        "assets": ["proto/*.proto"],
+        "assets": ["protos/*.proto"],
         "watchAssets": true
       }
     },
@@ -31,7 +31,7 @@
       "entryFile": "src/main",
       "compilerOptions": {
         "tsConfigPath": "apps/api-gateway/tsconfig.app.json",
-        "assets": ["proto/*.proto"],
+        "assets": ["protos/*.proto"],
         "watchAssets": true
       }
     },
