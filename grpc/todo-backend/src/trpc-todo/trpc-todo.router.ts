@@ -79,6 +79,9 @@ export class TrpcTodoRouter {
   };
 
   appRouter = this.trpcTodoSrvc.router({
+    hello: this.trpcTodoSrvc.procedure
+      .meta({ openapi: { method: 'GET', path: '/' } })
+      .query(() => ({ greeting: 'hello world' })),
     todo: this.todoRoutes,
   });
 

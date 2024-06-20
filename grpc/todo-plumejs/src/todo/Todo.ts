@@ -1,4 +1,5 @@
 import { Component, html } from '@plumejs/core';
+import { TodoService } from '../generated';
 import { trpc } from '../utils/trpc';
 
 @Component({
@@ -13,8 +14,12 @@ export class Todo {
   }
 
   getTodos() {
-    trpc.todo.list.query().then((todos) => {
-      this.todos = todos;
+    // trpc.todo.list.query().then((todos) => {
+    //   this.todos = todos;
+    // });
+    TodoService.todoList().then((todos) => {
+      console.log(todos);
+      this.todos = todos.result.data;
     });
   }
 

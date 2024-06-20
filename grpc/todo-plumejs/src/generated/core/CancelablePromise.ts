@@ -17,18 +17,18 @@ export interface OnCancel {
   (cancelHandler: () => void): void;
 }
 
-export class CancelablePromise<T> implements Promise<T> {
+export class CancelablePromise<T, U = { result: { data: T } }> implements Promise<U> {
   private _isResolved: boolean;
   private _isRejected: boolean;
   private _isCancelled: boolean;
   readonly cancelHandlers: (() => void)[];
-  readonly promise: Promise<T>;
-  private _resolve?: (value: T | PromiseLike<T>) => void;
+  readonly promise: Promise<U>;
+  private _resolve?: (value: U | PromiseLike<U>) => void;
   private _reject?: (reason?: unknown) => void;
 
   constructor(
     executor: (
-      resolve: (value: T | PromiseLike<T>) => void,
+      resolve: (value: U | PromiseLike<U>) => void,
       reject: (reason?: unknown) => void,
       onCancel: OnCancel
     ) => void
@@ -37,11 +37,11 @@ export class CancelablePromise<T> implements Promise<T> {
     this._isRejected = false;
     this._isCancelled = false;
     this.cancelHandlers = [];
-    this.promise = new Promise<T>((resolve, reject) => {
+    this.promise = new Promise<U>((resolve, reject) => {
       this._resolve = resolve;
       this._reject = reject;
 
-      const onResolve = (value: T | PromiseLike<T>): void => {
+      const onResolve = (value: U | PromiseLike<U>): void => {
         if (this._isResolved || this._isRejected || this._isCancelled) {
           return;
         }
@@ -84,8 +84,8 @@ export class CancelablePromise<T> implements Promise<T> {
     return 'Cancellable Promise';
   }
 
-  public then<TResult1 = T, TResult2 = never>(
-    onFulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | null,
+  public then<TResult1 = U, TResult2 = never>(
+    onFulfilled?: ((value: U) => TResult1 | PromiseLike<TResult1>) | null,
     onRejected?: ((reason: unknown) => TResult2 | PromiseLike<TResult2>) | null
   ): Promise<TResult1 | TResult2> {
     return this.promise.then(onFulfilled, onRejected);
@@ -93,11 +93,11 @@ export class CancelablePromise<T> implements Promise<T> {
 
   public catch<TResult = never>(
     onRejected?: ((reason: unknown) => TResult | PromiseLike<TResult>) | null
-  ): Promise<T | TResult> {
+  ): Promise<U | TResult> {
     return this.promise.catch(onRejected);
   }
 
-  public finally(onFinally?: (() => void) | null): Promise<T> {
+  public finally(onFinally?: (() => void) | null): Promise<U> {
     return this.promise.finally(onFinally);
   }
 

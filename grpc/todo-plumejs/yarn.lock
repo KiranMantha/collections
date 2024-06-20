@@ -294,10 +294,10 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.57.0.tgz#a5417ae8427873f1dd08b70b3574b453e67b5f7f"
   integrity sha512-Ys+3g2TaW7gADOJzPt83SJtCDhMjndcDMFVQ/Tj9iA1BfJzFKD9mAUXT3OenpuPHbI6P/myECxRJrofUsDx/5g==
 
-"@hey-api/openapi-ts@^0.47.0":
-  version "0.47.0"
-  resolved "https://registry.yarnpkg.com/@hey-api/openapi-ts/-/openapi-ts-0.47.0.tgz#2b7ac3b6b1ab39a5180a62886151f1cd20b8f7c7"
-  integrity sha512-dppZcULGVkTBNT4FrRRIPYS5oo1lHMkp0P6/qqW0A1tP+l5jXwkOlyeahJs6Kq0mbyoYmv2gK8BKbvDq/3yyNQ==
+"@hey-api/openapi-ts@^0.47.1":
+  version "0.47.1"
+  resolved "https://registry.yarnpkg.com/@hey-api/openapi-ts/-/openapi-ts-0.47.1.tgz#f5ac621bdb26fb0b4bd4ed2b7ab3182d03dcbac7"
+  integrity sha512-msrYJeY+rfcME8qOk8IJ4nt9lxdlsFVuETB7RFGzDDtvtdShD7zaJNzk5/mRGRRhMM6IA9JSXX6PSq7RCKnHBQ==
   dependencies:
     "@apidevtools/json-schema-ref-parser" "11.6.4"
     c12 "1.10.0"
@@ -3774,7 +3774,7 @@ typescript@5.2.2:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.2.2.tgz#5ebb5e5a5b75f085f22bc3f8460fba308310fa78"
   integrity sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==
 
-typescript@^5.3.3:
+typescript@^5.4.5:
   version "5.4.5"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.4.5.tgz#42ccef2c571fdbd0f6718b1d1f5e6e5ef006f611"
   integrity sha512-vcI4UpRgg81oIRUFwR0WSIHKt11nJ7SAVlYNIu+QpqeyXP+gpQJy/Z4+F0aGxSE4MqwjyXvW/TzgkLAx2AGHwQ==

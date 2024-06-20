@@ -20,7 +20,7 @@ async function bootstrap() {
     title: 'Todo App API',
     description: 'API documentation for the Todo App',
     version: '1.0.0',
-    baseUrl: 'http://localhost:3000/trpc',
+    baseUrl: `http://localhost:${PORT}/trpc`,
   });
 
   // Save OpenAPI document to a file

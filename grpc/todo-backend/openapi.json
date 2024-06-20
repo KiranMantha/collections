@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:3000/trpc"
+      "url": "http://localhost:3100/trpc"
     }
   ],
   "paths": {

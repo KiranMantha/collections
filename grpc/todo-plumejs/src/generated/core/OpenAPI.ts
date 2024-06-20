@@ -40,7 +40,7 @@ export type OpenAPIConfig = {
 };
 
 export const OpenAPI: OpenAPIConfig = {
-  BASE: 'http://localhost:3000/trpc',
+  BASE: 'http://localhost:3100/trpc',
   CREDENTIALS: 'include',
   ENCODE_PATH: undefined,
   HEADERS: undefined,
