@@ -5,7 +5,6 @@
 // source: protos/todo.proto
 
 /* eslint-disable */
-import { Metadata } from "@grpc/grpc-js";
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
 import { Observable } from "rxjs";
 
@@ -33,8 +32,13 @@ export interface FindOneTodoResponse {
   todo: Todo | undefined;
 }
 
+export interface CreateTodoRequest {
+  text: string;
+}
+
 export interface UpdateTodoRequest {
-  todo: Todo | undefined;
+  id: number;
+  completed: boolean;
 }
 
 export interface UpdateTodoResponse {
@@ -52,28 +56,32 @@ export interface RemoveTodoResponse {
 export const TODO_PACKAGE_NAME = "todo";
 
 export interface TodoServiceClient {
-  findAllTodo(request: Empty, metadata: Metadata, ...rest: any): Observable<FindAllTodoResponse>;
+  findAllTodo(request: Empty): Observable<FindAllTodoResponse>;
 
-  findOneTodo(request: FindOneTodoRequest, metadata: Metadata, ...rest: any): Observable<FindOneTodoResponse>;
+  findOneTodo(request: FindOneTodoRequest): Observable<FindOneTodoResponse>;
 
-  updateTodo(request: UpdateTodoRequest, metadata: Metadata, ...rest: any): Observable<UpdateTodoResponse>;
+  createTodo(request: CreateTodoRequest): Observable<Todo>;
 
-  removeTodo(request: RemoveTodoRequest, metadata: Metadata, ...rest: any): Observable<RemoveTodoResponse>;
+  updateTodo(request: UpdateTodoRequest): Observable<UpdateTodoResponse>;
+
+  removeTodo(request: RemoveTodoRequest): Observable<RemoveTodoResponse>;
 }
 
 export interface TodoServiceController {
-  findAllTodo(request: Empty, metadata: Metadata, ...rest: any): Observable<FindAllTodoResponse>;
+  findAllTodo(request: Empty): Observable<FindAllTodoResponse>;
 
-  findOneTodo(request: FindOneTodoRequest, metadata: Metadata, ...rest: any): Observable<FindOneTodoResponse>;
+  findOneTodo(request: FindOneTodoRequest): Observable<FindOneTodoResponse>;
 
-  updateTodo(request: UpdateTodoRequest, metadata: Metadata, ...rest: any): Observable<UpdateTodoResponse>;
+  createTodo(request: CreateTodoRequest): Observable<Todo>;
 
-  removeTodo(request: RemoveTodoRequest, metadata: Metadata, ...rest: any): Observable<RemoveTodoResponse>;
+  updateTodo(request: UpdateTodoRequest): Observable<UpdateTodoResponse>;
+
+  removeTodo(request: RemoveTodoRequest): Observable<RemoveTodoResponse>;
 }
 
 export function TodoServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ["findAllTodo", "findOneTodo", "updateTodo", "removeTodo"];
+    const grpcMethods: string[] = ["findAllTodo", "findOneTodo", "createTodo", "updateTodo", "removeTodo"];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
       GrpcMethod("TodoService", method)(constructor.prototype[method], method, descriptor);

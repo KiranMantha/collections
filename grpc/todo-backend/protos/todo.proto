@@ -5,6 +5,7 @@ package todo;
 service TodoService {
   rpc FindAllTodo (Empty) returns (FindAllTodoResponse) {}
   rpc FindOneTodo (FindOneTodoRequest) returns (FindOneTodoResponse) {}
+  rpc CreateTodo (CreateTodoRequest) returns (Todo) {}
   rpc UpdateTodo (UpdateTodoRequest) returns (UpdateTodoResponse) {}
   rpc RemoveTodo (RemoveTodoRequest) returns (RemoveTodoResponse) {}
 }
@@ -30,8 +31,13 @@ message FindOneTodoResponse {
   Todo todo = 1;
 }
 
+message CreateTodoRequest {
+  string text = 2;
+}
+
 message UpdateTodoRequest {
-  Todo todo = 1;
+  int32 id = 1;
+  bool completed = 3;
 }
 
 message UpdateTodoResponse {

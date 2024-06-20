@@ -1,35 +1,37 @@
+import {
+  CreateTodoRequest,
+  FindAllTodoResponse,
+  FindOneTodoRequest,
+  FindOneTodoResponse,
+  RemoveTodoRequest,
+  RemoveTodoResponse,
+  Todo,
+  TodoServiceController,
+  TodoServiceControllerMethods,
+  UpdateTodoRequest,
+  UpdateTodoResponse,
+} from '@app/generated-models';
 import { Controller } from '@nestjs/common';
-import { MessagePattern, Payload } from '@nestjs/microservices';
+import { Observable } from 'rxjs';
 import { TodoService } from './todo.service';
-import { CreateTodoDto } from './dto/create-todo.dto';
-import { UpdateTodoDto } from './dto/update-todo.dto';
 
+@TodoServiceControllerMethods()
 @Controller()
-export class TodoController {
+export class TodoController implements TodoServiceController {
   constructor(private readonly todoService: TodoService) {}
-
-  @MessagePattern('createTodo')
-  create(@Payload() createTodoDto: CreateTodoDto) {
-    return this.todoService.create(createTodoDto);
-  }
-
-  @MessagePattern('findAllTodo')
-  findAll() {
+  findAllTodo(): Observable<FindAllTodoResponse> {
     return this.todoService.findAll();
   }
-
-  @MessagePattern('findOneTodo')
-  findOne(@Payload() id: number) {
-    return this.todoService.findOne(id);
+  findOneTodo(request: FindOneTodoRequest): Observable<FindOneTodoResponse> {
+    return this.todoService.findOne(request.id);
   }
-
-  @MessagePattern('updateTodo')
-  update(@Payload() updateTodoDto: UpdateTodoDto) {
-    return this.todoService.update(updateTodoDto.id, updateTodoDto);
+  createTodo(request: CreateTodoRequest): Observable<Todo> {
+    return this.todoService.create(request);
   }
-
-  @MessagePattern('removeTodo')
-  remove(@Payload() id: number) {
-    return this.todoService.remove(id);
+  updateTodo(request: UpdateTodoRequest): Observable<UpdateTodoResponse> {
+    return this.todoService.update(request.id, request);
+  }
+  removeTodo(request: RemoveTodoRequest): Observable<RemoveTodoResponse> {
+    return this.todoService.remove(request.id);
   }
 }
