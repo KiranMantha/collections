@@ -3,6 +3,8 @@ import { ApiGatewayModule } from './api-gateway.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(ApiGatewayModule);
-  await app.listen(3000);
+  const PORT = 3000;
+  await app.listen(PORT);
+  console.log(`Backend started listening on: http://localhost:${PORT}`);
 }
 bootstrap();
