@@ -26,23 +26,25 @@ const Navigation = (props) => {
     </>
   );
   return (
-    <div className="header">
-      <ul className="nav nav-pills pull-right">
-        {isAuthenticated ? (
-          renderAuthLinks()
-        ) : (
-          <li>
-            <button
-              className="btn btn-sm btn-primary"
-              onClick={loginWithRedirect}
-            >
-              Login
-            </button>
-          </li>
-        )}
-      </ul>
-      <h3 className="text-muted">Securing React</h3>
-    </div>
+    <header>
+      <div className="header">
+        <ul className="nav nav-pills pull-right">
+          {isAuthenticated ? (
+            renderAuthLinks()
+          ) : (
+            <li>
+              <button
+                className="btn btn-sm btn-primary"
+                onClick={loginWithRedirect}
+              >
+                Login
+              </button>
+            </li>
+          )}
+        </ul>
+        <h3 className="text-muted">Securing React</h3>
+      </div>
+    </header>
   );
 };
 

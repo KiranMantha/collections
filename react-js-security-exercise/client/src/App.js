@@ -17,7 +17,7 @@ function App() {
     name: "Manny Henri",
     jumbotronTitle: "List of courses",
   };
-  const { isLoading, error } = useAuth0();
+  const { isLoading, error, isAuthenticated } = useAuth0();
 
   if (error) {
     return <div>Oops... {error.message}</div>;
@@ -29,20 +29,38 @@ function App() {
 
   return (
     <Router>
-      <div className="container">
+      <div className="app-container">
         <Navigation />
-        <Jumbotron title={state.jumbotronTitle} />
-        <Alert>Hello All</Alert>
-        <Routes>
-          <Route key="/" exact path="/" element={<Home />} />
-          <Route key="/profile" path="/profile" element={<Profile />} />
-          <Route key="/contact" path="/contact" element={<Contact />} />
-          <Route key="/about" path="/about" element={<About />} />
-        </Routes>
-        <div className="footer">
-          <p>&copy; {state.name} Inc.</p>
-          {/* <div dangerouslySetInnerHTML={createMarkup()}></div> */}
-        </div>
+        <main>
+          <Jumbotron title={state.jumbotronTitle} />
+          <Routes>
+            <Route
+              key="/"
+              exact
+              path="/"
+              element={
+                isAuthenticated ? (
+                  <Home />
+                ) : (
+                  <Alert type="danger">Login to view</Alert>
+                )
+              }
+            />
+            {isAuthenticated ? (
+              <>
+                <Route key="/profile" path="/profile" element={<Profile />} />
+                <Route key="/contact" path="/contact" element={<Contact />} />
+                <Route key="/about" path="/about" element={<About />} />
+              </>
+            ) : null}
+          </Routes>
+        </main>
+        <footer>
+          <div className="footer">
+            <p>&copy; {state.name} Inc.</p>
+            {/* <div dangerouslySetInnerHTML={createMarkup()}></div> */}
+          </div>
+        </footer>
       </div>
     </Router>
   );

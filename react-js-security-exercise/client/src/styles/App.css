@@ -7,8 +7,17 @@
 
 /* Space out content a bit */
 body {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  height: 100vh;
+}
+
+#root,
+.app-container {
+  height: 100%;
+}
+
+.app-container {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -21,7 +30,12 @@ body {
 
 /* Custom page header */
 .header {
+  margin-top: 19px;
   border-bottom: 1px solid #e5e5e5;
+}
+
+.header .btn {
+  margin: 5px 0;
 }
 
 /* Make the masthead heading the same height as the navigation */
