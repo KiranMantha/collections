@@ -4,12 +4,29 @@ import type { CancelablePromise } from './core/CancelablePromise';
 import { OpenAPI } from './core/OpenAPI';
 import { request as __request } from './core/request';
 import type {
+  HelloResponse,
   TodoListResponse,
   TodoAddData,
   TodoAddResponse,
   TodoCompleteData,
   TodoCompleteResponse
 } from './types.gen';
+
+export class DefaultService {
+  /**
+   * @returns unknown Successful response
+   * @throws ApiError
+   */
+  public static hello(): CancelablePromise<HelloResponse> {
+    return __request(OpenAPI, {
+      method: 'GET',
+      url: '/',
+      errors: {
+        default: 'Error response'
+      }
+    });
+  }
+}
 
 export class TodoService {
   /**

@@ -1,8 +1,8 @@
 import { ApiError } from './ApiError';
 import type { ApiRequestOptions } from './ApiRequestOptions';
 import type { ApiResult } from './ApiResult';
-import { CancelablePromise } from './CancelablePromise';
 import type { OnCancel } from './CancelablePromise';
+import { CancelablePromise } from './CancelablePromise';
 import type { OpenAPIConfig } from './OpenAPI';
 
 export const isString = (value: unknown): value is string => {
@@ -124,7 +124,7 @@ export const getHeaders = async (config: OpenAPIConfig, options: ApiRequestOptio
 
   const headers = Object.entries({
     Accept: 'application/json',
-    ...additionalHeaders,
+    ...(additionalHeaders as Record<string, string>),
     ...options.headers
   })
     .filter(([, value]) => value !== undefined && value !== null)
