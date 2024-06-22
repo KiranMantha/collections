@@ -3,22 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@tanstack/react-query": "^5.45.0",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@trpc/client": "^11.0.0-rc.413",
-    "@trpc/react-query": "^11.0.0-rc.413",
-    "@trpc/server": "^11.0.0-rc.413",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.98",
+    "@tanstack/react-query": "^5.45.1",
+    "@testing-library/jest-dom": "^6.4.6",
+    "@testing-library/react": "^16.0.0",
+    "@testing-library/user-event": "^14.5.2",
+    "@trpc/client": "^11.0.0-rc.417",
+    "@trpc/react-query": "^11.0.0-rc.417",
+    "@trpc/server": "^11.0.0-rc.417",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.14.8",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-scripts": "5.0.1",
-    "typescript": "^5.4.5",
-    "web-vitals": "^2.1.4"
+    "typescript": "^5.5.2",
+    "web-vitals": "^4.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -46,7 +46,7 @@
     ]
   },
   "devDependencies": {
-    "@hey-api/openapi-ts": "0.46.2",
+    "@hey-api/openapi-ts": "0.47.2",
     "prettier": "^3.3.2"
   }
 }
