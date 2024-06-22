@@ -1,4 +1,4 @@
-import configJson from "../../configs/auth_config.json";
+import { configJson } from "configs";
 
 export function getConfig() {
   // Configure the audience here. By default, it will take whatever is in the config
@@ -7,6 +7,7 @@ export function getConfig() {
   // don't have an API).
   // If this resolves to `null`, the API page changes to show some helpful info about what to do
   // with the audience.
+  // client secret: JE0koEUHCEWFqzWYR_E6eU1GowAAQerQAY94ve3N69ebooHucEFvIjOA1BsC4IQf
   const audience =
     configJson.audience && configJson.audience !== "YOUR_API_IDENTIFIER"
       ? configJson.audience

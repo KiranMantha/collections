@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 // import { Button, Alert } from "reactstrap";
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
-import { Alert } from "../components/Alert";
-import Highlight from "../components/Highlight";
-import Loading from "../components/Loading";
+import { Alert, Loading } from "../components";
+// import Highlight from "../components/Highlight";
 import { getConfig } from "../config";
 
 export const ExternalApiComponent = () => {
@@ -86,7 +85,7 @@ export const ExternalApiComponent = () => {
     <>
       <div className="mb-5">
         {state.error === "consent_required" && (
-          <Alert color="warning">
+          <Alert type="warning">
             You need to{" "}
             <a
               href="#/"
@@ -99,7 +98,7 @@ export const ExternalApiComponent = () => {
         )}
 
         {state.error === "login_required" && (
-          <Alert color="warning">
+          <Alert type="warning">
             You need to{" "}
             <a
               href="#/"
@@ -124,7 +123,7 @@ export const ExternalApiComponent = () => {
         </p>
 
         {!audience && (
-          <Alert color="warning">
+          <Alert type="warning">
             <p>
               You can't call the API at the moment because your application does
               not have any configuration for <code>audience</code>, or it is
@@ -183,9 +182,9 @@ export const ExternalApiComponent = () => {
         {state.showResult && (
           <div className="result-block" data-testid="api-result">
             <h6 className="muted">Result</h6>
-            <Highlight>
-              <span>{JSON.stringify(state.apiMessage, null, 2)}</span>
-            </Highlight>
+            {/* <Highlight> */}
+            <div>{JSON.stringify(state.apiMessage, null, 2)}</div>
+            {/* </Highlight> */}
           </div>
         )}
       </div>

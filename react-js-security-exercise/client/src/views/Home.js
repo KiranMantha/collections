@@ -1,11 +1,15 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
-import data from "../data/data.json";
 import Feed from "./Feed";
 
 const Home = () => {
   const [feeds, setFeeds] = useState([]);
   useEffect(() => {
-    setFeeds(data);
+    const getCourses = async () => {
+      const response = await axios.get("http://localhost:4000/courses");
+      setFeeds(response.data);
+    };
+    getCourses();
   }, []);
   return <Feed feeds={feeds} />;
 };

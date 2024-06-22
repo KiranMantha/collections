@@ -1,8 +1,7 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import React from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import { Alert } from "./components/Alert";
-import Jumbotron from "./components/Jumbotron";
-import Navigation from "./components/Navigation";
+import { Alert, Jumbotron, Loading, Navigation } from "./components";
 import "./styles/App.css";
 import About from "./views/About";
 import Contact from "./views/Contact";
@@ -18,6 +17,15 @@ function App() {
     name: "Manny Henri",
     jumbotronTitle: "List of courses",
   };
+  const { isLoading, error } = useAuth0();
+
+  if (error) {
+    return <div>Oops... {error.message}</div>;
+  }
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <Router>

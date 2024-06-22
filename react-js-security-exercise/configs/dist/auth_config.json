@@ -1,5 +1,5 @@
 {
   "domain": "vak.auth0.com",
   "clientId": "WE1cFXkRj2M9h0oiNCMoDLWLMp7yT4Eh",
-  "audience": "{yourApiIdentifier}"
+  "audience": "https://vak.auth0.com/api/v2/"
 }
