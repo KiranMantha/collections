@@ -11,6 +11,36 @@
     }
   ],
   "paths": {
+    "/": {
+      "get": {
+        "operationId": "hello",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "greeting": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "greeting"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
     "/todo.list": {
       "get": {
         "operationId": "todo-list",

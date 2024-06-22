@@ -81,6 +81,8 @@ export class TrpcTodoRouter {
   appRouter = this.trpcTodoSrvc.router({
     hello: this.trpcTodoSrvc.procedure
       .meta({ openapi: { method: 'GET', path: '/' } })
+      .input(z.void())
+      .output(z.object({ greeting: z.string() }))
       .query(() => ({ greeting: 'hello world' })),
     todo: this.todoRoutes,
   });
