@@ -8,16 +8,21 @@ import Contact from "./views/Contact";
 import Home from "./views/Home";
 import Profile from "./views/Profile";
 
-// const createMarkup = () => {
-//   return { __html: 'i"m so dangerous' };
-// };
+const SecuredComponent = ({ Component }) => {
+  const { isAuthenticated } = useAuth0();
+  return isAuthenticated ? (
+    <Component />
+  ) : (
+    <Alert type="danger">Login to view</Alert>
+  );
+};
 
 function App() {
   const state = {
     name: "Manny Henri",
     jumbotronTitle: "List of courses",
   };
-  const { isLoading, error, isAuthenticated } = useAuth0();
+  const { isLoading, error } = useAuth0();
 
   if (error) {
     return <div>Oops... {error.message}</div>;
@@ -38,27 +43,28 @@ function App() {
               key="/"
               exact
               path="/"
-              element={
-                isAuthenticated ? (
-                  <Home />
-                ) : (
-                  <Alert type="danger">Login to view</Alert>
-                )
-              }
+              element={<SecuredComponent Component={Home} />}
             />
-            {isAuthenticated ? (
-              <>
-                <Route key="/profile" path="/profile" element={<Profile />} />
-                <Route key="/contact" path="/contact" element={<Contact />} />
-                <Route key="/about" path="/about" element={<About />} />
-              </>
-            ) : null}
+            <Route
+              key="/profile"
+              path="/profile"
+              element={<SecuredComponent Component={Profile} />}
+            />
+            <Route
+              key="/contact"
+              path="/contact"
+              element={<SecuredComponent Component={Contact} />}
+            />
+            <Route
+              key="/about"
+              path="/about"
+              element={<SecuredComponent Component={About} />}
+            />
           </Routes>
         </main>
         <footer>
           <div className="footer">
             <p>&copy; {state.name} Inc.</p>
-            {/* <div dangerouslySetInnerHTML={createMarkup()}></div> */}
           </div>
         </footer>
       </div>
