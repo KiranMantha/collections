@@ -1,4 +1,4 @@
-# todo-backend
+# todo-backend based on nestjs and grpc
 
 ## Installation
 
