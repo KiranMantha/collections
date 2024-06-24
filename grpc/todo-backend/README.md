@@ -32,6 +32,11 @@ $ yarn run test:e2e
 $ yarn run test:cov
 ```
 
+## To generate code gen from proto files:
+
+1. add the proto file to protos folder
+2. run `npm run createDto`
+
 ## License
 
 Nest is [MIT licensed](LICENSE).

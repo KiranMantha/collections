@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package todo;
+
+service TodoService {
+  rpc FindAllTodo (Empty) returns (FindAllTodoResponse) {}
+  rpc FindOneTodo (FindOneTodoRequest) returns (FindOneTodoResponse) {}
+  rpc CreateTodo (CreateTodoRequest) returns (Todo) {}
+  rpc UpdateTodo (UpdateTodoRequest) returns (UpdateTodoResponse) {}
+  rpc RemoveTodo (RemoveTodoRequest) returns (RemoveTodoResponse) {}
+}
+
+// Empty contract
+message Empty {}
+
+message Todo {
+  int32 id = 1;
+  string text = 2;
+  bool completed = 3;
+}
+
+message FindAllTodoResponse {
+  repeated Todo todos = 1;
+}
+
+message FindOneTodoRequest {
+  int32 id = 1;
+}
+
+message FindOneTodoResponse {
+  Todo todo = 1;
+}
+
+message CreateTodoRequest {
+  string text = 2;
+}
+
+message UpdateTodoRequest {
+  int32 id = 1;
+  bool completed = 3;
+}
+
+message UpdateTodoResponse {
+  bool success = 1;
+}
+
+message RemoveTodoRequest {
+  int32 id = 1;
+}
+
+message RemoveTodoResponse {
+  bool success = 1;
+}
