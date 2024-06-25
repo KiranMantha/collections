@@ -68,6 +68,6 @@ class TodoService implements TodoServiceServer {
 }
 
 export function loadTodoService(server: Server) {
-  const todoProto: any = loadPackageDefinition("todo", server).todo;
+  const todoProto: any = loadPackageDefinition("todo").todo;
   server.addService(todoProto.TodoService.service, new TodoService());
 }

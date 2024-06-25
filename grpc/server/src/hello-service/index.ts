@@ -14,6 +14,6 @@ class HelloService implements GreeterServer {
 }
 
 export function loadHelloService(server: Server) {
-  const helloProto: any = loadPackageDefinition("hello", server).hello;
+  const helloProto: any = loadPackageDefinition("hello").hello;
   server.addService(helloProto.Greeter.service, new HelloService());
 }
