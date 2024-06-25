@@ -1,0 +1,29 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "postinstall": "npm link ../protos",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon -x tsx src/index.ts",
+    "createDto": "sh build-protos.sh"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@grpc/grpc-js": "^1.10.10",
+    "@grpc/proto-loader": "^0.7.13",
+    "@grpc/reflection": "^1.0.4"
+  },
+  "devDependencies": {
+    "@types/google-protobuf": "^3.15.12",
+    "@types/node": "^20.14.8",
+    "nodemon": "^3.1.4",
+    "ts-proto": "^1.180.0",
+    "tsx": "^4.15.7",
+    "typescript": "^5.5.2"
+  }
+}
