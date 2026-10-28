@@ -1,0 +1,12 @@
+type Inventory @key(fields: "productId") {
+  productId: ID!
+  stock: Int!
+}
+
+extend type Query {
+  inventory(productId: ID!): Inventory
+}
+
+extend type Mutation {
+  updateStock(productId: ID!, stock: Int!): Inventory
+}

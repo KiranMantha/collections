@@ -1,0 +1,14 @@
+[
+  {
+    "type": "sqlite",
+    "path": "/Users/mankiran/Documents/Project Templates/nestjs-federated-graphql-kafka/data/products.sqlite"
+  },
+  {
+    "type": "sqlite",
+    "path": "/Users/mankiran/Documents/Project Templates/nestjs-federated-graphql-kafka/data/orders.sqlite"
+  },
+  {
+    "type": "sqlite",
+    "path": "/Users/mankiran/Documents/Project Templates/nestjs-federated-graphql-kafka/data/inventory.sqlite"
+  }
+]

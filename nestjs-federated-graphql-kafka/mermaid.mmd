@@ -1,0 +1,40 @@
+graph TD
+
+subgraph Gateway Layer
+    A[API Gateway]
+end
+
+subgraph Services Layer
+    B[Products Service]
+    C[Orders Service]
+    D[Inventory Service]
+end
+
+subgraph Database Layer
+    E[(Products SQLite)]
+    F[(Orders SQLite)]
+    G[(Inventory SQLite)]
+end
+
+subgraph Kafka Layer
+    H[Kafka Topics]
+end
+
+subgraph Common Library
+    I[Shared Entities]
+end
+
+A --> B  --> E[(Products SQLite)]
+A --> C  --> F[(Orders SQLite)]
+A --> D  --> G[(Inventory SQLite)]
+
+B -- Kafka Event: Product Created --> H --> C[Orders Service]
+C -- Kafka Event: Order Created --> H --> D[Inventory Service]
+
+B --> I[Shared Entities]
+C --> I[Shared Entities]
+D --> I[Shared Entities]
+
+H --> B[Kafka Consumer]
+H --> C[Kafka Consumer]
+H --> D[Kafka Consumer]

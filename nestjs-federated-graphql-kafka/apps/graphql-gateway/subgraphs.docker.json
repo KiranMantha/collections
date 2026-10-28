@@ -1,0 +1,5 @@
+[
+  { "name": "products", "url": "http://products-service:3001/graphql" },
+  { "name": "orders", "url": "http://orders-service:3002/graphql" },
+  { "name": "inventory", "url": "http://inventory-service:3003/graphql" }
+]
